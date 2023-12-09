@@ -55,9 +55,13 @@ button:active {
 #previousValue {
     margin: 15px;
     font-size: x-large;
+    max-width: 75%;
+    background-color: #B4BDC6;
 }
 
 #currentValue {
     margin: 15px;
     font-size: large;
+    background-color: #B4BDC6;
+    /* border: none; */
 }
