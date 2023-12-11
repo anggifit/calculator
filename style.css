@@ -57,11 +57,14 @@ button:active {
     font-size: x-large;
     max-width: 75%;
     background-color: #B4BDC6;
+    border: none;
+    text-align: right;
 }
 
 #currentValue {
     margin: 15px;
     font-size: large;
     background-color: #B4BDC6;
-    /* border: none; */
+    border: none;
+    text-align: right;
 }

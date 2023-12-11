@@ -58,19 +58,23 @@ function operations (operator, previousValue) {
 
         switch (operator) {
             case "+":
-                currentInputDisplay.value = mathOperations.sum(previousValue, parseFloat(currentValue))
+                previousInputDisplay.value = mathOperations.sum(previousValue, parseFloat(currentValue))
+                currentInputDisplay.value = ""
                 break;
         
             case "-":
-                currentInputDisplay.value = mathOperations.subst(previousValue, parseFloat(currentValue))
+                previousInputDisplay.value = mathOperations.subst(previousValue, parseFloat(currentValue))
+                currentInputDisplay.value = ""
                 break;  
 
             case "*":
-                currentInputDisplay.value = mathOperations.multp(previousValue, parseFloat(currentValue))
+                previousInputDisplay.value = mathOperations.multp(previousValue, parseFloat(currentValue))
+                currentInputDisplay.value = ""
                 break;
 
             case "/":
-                currentInputDisplay.value = mathOperations.div(previousValue, parseFloat(currentValue))
+                previousInputDisplay.value = mathOperations.div(previousValue, parseFloat(currentValue))
+                currentInputDisplay.value = ""
                 break;
 
             default:
@@ -79,6 +83,7 @@ function operations (operator, previousValue) {
         }
     })
 }
+
 operatorButtons.forEach((operatorButton) => {
     operatorValue(operatorButton)    
 
