@@ -2,11 +2,13 @@ let previousInputDisplay = document.getElementById('previousValue')
 let currentInputDisplay = document.getElementById('currentValue')
 const numberButtons = document.querySelectorAll('.number')
 const operatorButtons = document.querySelectorAll('.operator')
+const equalButton = document.querySelector('.equalOperator')
 const backButton = document.querySelector('.backButton')
+const cButton = document.querySelector('.col-2')
 
 let currentValue = ''
 
-function showValue() {
+function showCurrentValue() {
     numberButtons.forEach((button) => {
         button.addEventListener("click", (event) => {
             event.preventDefault()
@@ -18,18 +20,68 @@ function showValue() {
     }) 
 }
 
-function clearDisplay() {
-    backButton.addEventListener("click", (event) => {
+function clearValue() {
+    currentValue = ''
+    currentInputDisplay.value = currentValue
+}
+
+showCurrentValue()
+
+backButton.addEventListener("click", (event) => {
+    event.preventDefault()
+    clearValue()
+})
+
+cButton.addEventListener("click", (event) => {
+    event.preventDefault()
+    clearValue()
+    previousInputDisplay.value = ''
+})
+
+function operatorValue(button) {
+    button.addEventListener("click", (event) => {
         event.preventDefault()
+        previousInputDisplay.value = currentInputDisplay.value
+        const previousValue = parseFloat(previousInputDisplay.value) 
+        currentInputDisplay.value = ''
         currentValue = ''
-        currentInputDisplay.value = currentValue
+        const operatorValue = button.innerHTML
+
+        operations(operatorValue, previousValue)
     })
 }
 
-showValue()
-clearDisplay()
+function operations (operator, previousValue) {
+    equalButton.addEventListener("click", (e)=> {
+        e.preventDefault()
+        const mathOperations = new MathOperations()
 
-const mathOperations = new MathOperations()
+        switch (operator) {
+            case "+":
+                currentInputDisplay.value = mathOperations.sum(previousValue, parseFloat(currentValue))
+                break;
+        
+            case "-":
+                currentInputDisplay.value = mathOperations.subst(previousValue, parseFloat(currentValue))
+                break;  
 
+            case "*":
+                currentInputDisplay.value = mathOperations.multp(previousValue, parseFloat(currentValue))
+                break;
+
+            case "/":
+                currentInputDisplay.value = mathOperations.div(previousValue, parseFloat(currentValue))
+                break;
+
+            default:
+                alert("ERROR")
+                break;
+        }
+    })
+}
+operatorButtons.forEach((operatorButton) => {
+    operatorValue(operatorButton)    
+
+})
 
 
